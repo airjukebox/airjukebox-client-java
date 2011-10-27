@@ -1,0 +1,2 @@
+airjukebox.endpoint=http://localhost:8000
+airjukebox.channel=default

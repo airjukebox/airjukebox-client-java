@@ -1,0 +1,53 @@
+AirJukebox Java Client
+====
+
+Background
+---
+This is a lightweight Java airjukebox client, which communicates with the
+'AirCentral' API and Grooveshark via HTTP.
+
+
+Usage
+---
+The included Ant buildfile should allow easy execution of the application.
+To configure, build and then run the client, do the following:
+
+* Edit/create a 'src/airjukebox.properties' configuration file
+* Build the application by running 'ant'
+* Execute the application by running 'java -jar dist/airjukebox.jar'
+
+
+Dependencies
+---
+The client makes use of the following libraries:
+
+* gson - Google's JSON handling library for Java
+* jaco - a lightweight Java MP3 playback engine
+* jgroove - a small client library for Grooveshark
+* apache-http - commonly-distributed HTTP client library for Java
+
+
+Design Goals
+---
+* Portability - ideally this client should be able to run, with some
+modifications, on the Android platform
+
+* Low Battery Usage - mobile devices may be constrained by available battery,
+power, so where possible we should avoid using 'tight loops', too much network
+communication, long or complicated computation, etc.
+
+* Low Bandwidth Usage - some users may have limited data plans, and so if we
+can minimize the amount of bandwidth that we use, we may be more successful.
+This also helps save battery.
+
+* Readahead and Low Connectivity - where possible the application tries to
+anticipate the next song/action so that there is minimal delay during playback
+between songs.  We also need to consider that connectivity between the client
+and API may be unreliable, so if they client can continue to act 'sensibly' for
+some amount of time without connectivity that will improve user experience
+
+* Application Size - smaller will be better in terms of download & installation
+time
+
+* External Bandwidth - where possible we should use external APIs and not our
+own, so that we minimize our own bandwidth costs

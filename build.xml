@@ -1,0 +1,39 @@
+<project name="airjukebox" default="dist" basedir=".">
+
+  <property name="src" location="src" />
+  <property name="lib" location="lib" />
+  <property name="build" location="build" />
+  <property name="dist"  location="dist" />
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}">
+      <classpath>
+        <fileset dir="${lib}">
+          <include name="*.jar" />
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}" />
+    <copy file="${src}/airjukebox.properties" todir="${build}" />
+    <jar jarfile="${dist}/airjukebox.jar" basedir="${build}">
+      <zipgroupfileset dir="${lib}" includes="*.jar" />
+      <manifest>
+        <attribute name="Main-Class" value="com.airjukebox.Main" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+</project>
